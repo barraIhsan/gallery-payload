@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 
 export const Gallery: CollectionConfig = {
   slug: 'gallery',
@@ -31,4 +32,8 @@ export const Gallery: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [revalidatePage],
+    afterDelete: [revalidateDelete],
+  },
 }
